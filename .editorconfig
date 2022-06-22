@@ -1,0 +1,13 @@
+root = true
+
+[*]
+indent_style = space
+
+[*.cs]
+indent_size = 4
+
+[*.json]
+indent_size = 2
+
+[*.csproj]
+indent_size = 2

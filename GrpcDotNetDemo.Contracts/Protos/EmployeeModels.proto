@@ -1,0 +1,90 @@
+﻿syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "GrpcDotNetDemo.Contracts.Grpc";
+
+message GetTokenRequest {
+    string username = 1;
+    string password = 2;
+}
+
+message GetTokenResponse {
+    string token = 1;
+}
+
+enum EmployeeType {
+    fullTime = 0;
+    partTime = 1;
+    contractor = 2;
+    intern = 3;
+}
+
+enum ActionResultType {
+    success = 0;
+    validationFailure = 1;
+    entityNotFound = 2;
+}
+
+message CommandResult {
+    ActionResultType actionResult = 1;
+    repeated string errors = 2;
+}
+
+message Employee {
+    string employeeId = 1;
+    string firstName = 2;
+    string lastName = 3;
+    string title = 4;
+    string department = 5;
+    google.protobuf.Timestamp startDate = 6;
+    google.protobuf.Timestamp endDate = 7;
+    EmployeeType type = 8;
+    bool isActive = 9;
+    repeated string skills = 10;
+    double hourlyPay = 11;
+}
+
+message GetEmployeesRequest {}
+
+message GetEmployeesResponse {
+    repeated Employee employees = 1;
+}
+
+message GetEmployeeRequest {
+    string employeeId = 1;
+}
+
+message GetEmployeeResponse {
+    Employee employee = 1;
+}
+
+message CreateEmployeeRequest {
+    Employee employee = 1;
+}
+
+message CreateEmployeeResponse {
+    CommandResult result = 1;
+    string employeeId = 2;
+}
+
+message UpdateEmployeeRequest {
+    string employeeId = 1;
+    Employee employee = 2;
+}
+
+message UpdateEmployeeResponse {
+    CommandResult result = 1;
+}
+
+message DeleteEmployeeRequest {
+    string employeeId = 1;
+}
+
+message DeleteEmployeeResponse {
+    CommandResult result = 1;
+}
+
+message BulkCreateEmployeeResponse {
+    repeated CreateEmployeeResponse createEmployeeResult = 1;
+}

@@ -1,0 +1,32 @@
+﻿syntax = "proto3";
+
+import "EmployeeModels.proto";
+
+option csharp_namespace = "GrpcDotNetDemo.Contracts.Grpc";
+
+service EmployeeManagementService {
+
+	rpc GetEmployee (GetEmployeeRequest) returns (GetEmployeeResponse);
+
+	rpc GetEmployees (GetEmployeesRequest) returns (GetEmployeesResponse);
+
+	rpc CreateEmployee (CreateEmployeeRequest) returns (CreateEmployeeResponse);
+
+	rpc UpdateEmployee (UpdateEmployeeRequest) returns (UpdateEmployeeResponse);
+
+	rpc DeleteEmployee (DeleteEmployeeRequest) returns (DeleteEmployeeResponse);
+
+	// --- Streaming ---
+	// Server
+	rpc GetEmployeesStreaming (GetEmployeesRequest) returns (stream GetEmployeeResponse);
+
+	// --- Streaming ---
+	// Client
+	rpc BulkCreateEmployeesClientStreaming (stream CreateEmployeeRequest) returns (BulkCreateEmployeeResponse);
+
+	// --- Streaming ---
+	// Bi-directional
+	rpc BulkCreateEmployeesBidirectionalStreaming (stream CreateEmployeeRequest) returns (stream CreateEmployeeResponse);
+
+	rpc GetToken(GetTokenRequest) returns (GetTokenResponse);
+}

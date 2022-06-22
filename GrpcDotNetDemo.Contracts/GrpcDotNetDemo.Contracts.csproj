@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+  </ItemGroup>
+
+  <!-- https://github.com/grpc/grpc/blob/master/src/csharp/BUILD-INTEGRATION.md -->
+  <ItemGroup>
+	<ProtoBuf Include="**/*.proto" ProtoRoot="Protos" OutputDir="%(RelativeDir)" CompileOutputs="false" GrpcServices="None" />
+	<ProtoBuf Update="**/*Service.proto" GrpcServices="Both" />	  
+  </ItemGroup>
+
+</Project>
